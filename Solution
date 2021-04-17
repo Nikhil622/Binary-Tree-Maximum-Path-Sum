@@ -1,0 +1,22 @@
+//Binary Tree Maximum Path Sum
+class Solution {
+public:
+    int fun(TreeNode* root,int&res)
+    {  if(root==NULL)
+         return 0;
+       if(root->left==NULL && root->right==NULL)
+       {  res=max(res,root->val);
+          return root->val; 
+       }
+       int x=fun(root->left,res),y=fun(root->right,res); 
+      res=max(res,max(root->val,max(x+y+root->val,max(x+root->val,y+root->val))));
+      return max(root->val,max(x+root->val,y+root->val));
+    }
+    int maxPathSum(TreeNode* root){
+        if(root==NULL)
+            return 0;
+        int res=INT_MIN;
+        int x=fun(root,res);
+      return res;
+    }
+};
